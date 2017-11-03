@@ -1,0 +1,75 @@
+<div style="text-align:center">
+  <div class="alert alert-dismissible alert-info">
+
+
+    <div class="row" style="margin:5px;">
+      <div class="col-md-4 ">
+        <h3>
+          <select #selectElem (change)="setUrl(selectElem.value)">
+            <option *ngFor="let url of databaseUrls">
+              {{url}}
+            </option>
+          </select>
+        </h3>
+      </div>
+      <div class="col-md-4 ">
+        <h3>
+          <select #selectElemTable (change)="setTable(selectElemTable.value)">
+            <option *ngFor="let item of tables">
+              {{item}}
+            </option>
+          </select>
+
+        </h3>
+      </div>
+      <div class="col-md-4 ">
+        <h3>
+          <form>
+            <div class="form-row align-items-center">
+              <div class="col-sm-8">
+                <input type="text" class="form-control mb-2 mb-sm-0" name="inlineFormInputName" id="inlineFormInputName" [(ngModel)]="newUrl"
+                  placeholder="http://grest..." />
+              </div>
+
+              <div class="col-auto">
+                <button (click)="newUrlButton()" class="btn btn-default">Add DB</button>
+                <button (click)="clearDB()" class="btn btn-danger">Clear</button>
+              </div>
+            </div>
+          </form>
+        </h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row" style="margin:5px;">
+
+
+  <div class="col-md-4" style="text-align: center;">
+    <button class="btn btn-md btn-default" style="margin:auto;" (click)="prev()">&lt; Back</button>
+  </div>
+
+  <div class="col-md-4" style="text-align: center;">
+
+    <strong>{{getRange()}}</strong>
+
+  </div>
+
+  <div class="col-md-4" style="text-align: center;">
+    <button class="btn btn-md btn-default" (click)="next()">Forward &gt;</button>
+  </div>
+
+</div>
+
+
+<div *ngIf="busy" class="alert alert-danger animated infinite shake" style="width:80%; margin:0 auto; text-align:center">
+  <strong>
+    {{busyMessage}}
+  </strong>
+</div>
+
+<div id="tableHere" style="margin:15px;">
+
+</div>
