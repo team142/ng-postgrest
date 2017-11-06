@@ -62,7 +62,36 @@ export class AppComponent implements OnInit {
   }
 
   public newDatabase(): void {
-    var url = prompt("Please enter your grest url:", "http://grest.something.com");
+
+    var t = this;
+
+    swal({
+      title: 'Please enter a grest url',
+      input: 'text',
+      showCancelButton: true,
+      confirmButtonText: 'Save',
+      showLoaderOnConfirm: true,
+      preConfirm: function (email) {
+        return new Promise(function (resolve, reject) {
+          setTimeout(function() {
+            if (!email) {
+              reject('Nope.')
+            } else {
+              resolve()
+            }
+          }, 2000)
+        })
+      },
+      allowOutsideClick: false
+    }).then(function (email) {
+      t.addUrl(email)
+    })
+
+
+  }
+
+  public addUrl(url: string): void {
+    // var url = prompt("Please enter your grest url:", "http://grest.something.com");
     if (url) {
       if (this.databaseUrls.length == 0) {
         this.currentUrl = url;
@@ -71,7 +100,9 @@ export class AppComponent implements OnInit {
       this.persistUrls();
       this.refreshListOfTables();
     }
+
   }
+
   public newUrlButton(): void {
     if (this.databaseUrls.length == 0) {
       this.currentUrl = this.newUrl;
@@ -88,6 +119,7 @@ export class AppComponent implements OnInit {
 
   public clearDB(): void {
     localStorage.removeItem("databaseUrls");
+    this.databaseUrls = [];
     swal({
       title: 'Success',
       text: 'The database has been cleared',
