@@ -153,7 +153,7 @@ export class AppComponent implements OnInit {
     divString = divString + "</tr>"
     for (let tableRow of blob) {
       divString = divString + "<tr>"
-      divString = divString + "<td>" + count + "</td>"
+      divString = divString + "<td>" + count + '<span class="glyphicon glyphicon-edit"></span>' + "</td>"
       for (var key in row) {
         if (tableRow.hasOwnProperty(key)) {
           divString = divString + "<td>"
