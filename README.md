@@ -44,8 +44,11 @@ Run `ng build --prod --aot=false` .
 
 ### Stack
 
-  - Angular 4
-  - Sweet Alert 2
+  - **Angular 4**
+  - **Bootstrap 4**
+  - **Sweet Alert 2**
+  - **Karma**
+  - Postgrest
 
 
 
