@@ -41,6 +41,7 @@ Run `ng build --prod --aot=false` .
   - Host latest release on Github pages
   - Docker image (Alpine, Nginx)
   - Heroku button
+  - Clear exception communication
 
 ### Stack
 
