@@ -51,9 +51,9 @@ export class AppComponent implements OnInit {
 
   public getRange(): string {
     if (this.offset == 0) {
-      return "Rows " + (this.offset + 1) + " to " + (this.offset + this.limit);
+      return "Rows " + (this.offset + 1) + " to " + (this.offset + this.tableRows.length);
     }
-    return "Rows " + this.offset + " to " + (this.offset + this.limit);
+    return "Rows " + this.offset + " to " + (this.offset + this.tableRows.length);
   }
 
   public setUrl(urlIn: string) {
