@@ -17,7 +17,7 @@
           <span class="glyphicon glyphicon-trash"></span> Clear
         </button>
         &nbsp;
-        <button  (click)="refreshListOfTables()" class="btn btn-success btn-sm">
+        <button (click)="refreshListOfTables()" class="btn btn-success btn-sm">
           <span class="glyphicon glyphicon-refresh"></span> Refresh
         </button>
 
@@ -30,7 +30,7 @@
                 {{item}}
               </option>
             </select>
-            <button  (click)="refreshTable()" class="btn btn-success btn-sm">
+            <button (click)="refreshTable()" class="btn btn-success btn-sm">
               <span class="glyphicon glyphicon-refresh"></span> Refresh
             </button>
           </li>
@@ -108,17 +108,27 @@
         </th>
         <th>#</th>
         <th *ngFor="let col of tableColumns; let i = index">{{col}}</th>
+        <th>
+
+        </th>
       </tr>
 
 
       <tr *ngFor="let row of tableRows; let i = index">
         <td>
-          <span (click)="edit(row, i)" class="glyphicon glyphicon-pencil"></span>
+          <span (click)="edit(row, i)" class="glyphicon glyphicon-pencil" style="color:blue"></span>
         </td>
         <td>{{i+1}}</td>
         <td *ngFor="let col of tableColumns; let i = index">
           {{row[col]}}
         </td>
+        <td>
+          <button (click)="deleteRowButton(row)" class="button btn-sm btn-default">
+            <span class="glyphicon glyphicon-trash" style="color:red"></span>&nbsp;
+          </button>
+
+        </td>
+
       </tr>
 
 

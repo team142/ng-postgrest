@@ -73,7 +73,7 @@ export class AppComponent implements OnInit {
       showLoaderOnConfirm: true,
       preConfirm: function (email) {
         return new Promise(function (resolve, reject) {
-          setTimeout(function() {
+          setTimeout(function () {
             if (!email) {
               reject('Nope.')
             } else {
@@ -268,6 +268,37 @@ export class AppComponent implements OnInit {
     this.editing = false;
 
   }
+
+  public deleteRowButton(row: any): void {
+    var t = this;
+    swal({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then(function () {
+      t.deleteRow(row)
+    }).catch(function () {
+      console.log("Cancelled")
+    })
+
+
+
+  }
+
+  public deleteRow(row: any) {
+    var t = this;
+    this._postgrestService.doDelete(this.currentUrl + this.table + "?id=eq." + row['id'])
+      .catch(error => console.log(error))
+      .then(v => t.refreshTable()
+      )
+
+  }
+
+
 
 
 

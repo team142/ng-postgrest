@@ -39,6 +39,17 @@ export class PostgrestServiceService {
 
   }
 
+  public doDelete(url: string): Promise<string[]> {
+
+    let headers = new Headers({
+      'Content-type': 'application/json'
+    });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.delete(url, options)
+      .toPromise()
+      .catch(this.handleError);
+
+  }
 
   private handleError(error: any): Promise<any> {
     return Promise.reject(error.message || error);
