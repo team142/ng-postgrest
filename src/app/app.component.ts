@@ -3,14 +3,15 @@ import { OnInit } from '@angular/core';
 import { PostgrestServiceService } from './services/postgrest-service.service';
 import { Properties } from './static/Properties';
 
+declare var swal: any;
+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-
-
 
   title = 'app';
 
@@ -87,7 +88,14 @@ export class AppComponent implements OnInit {
 
   public clearDB(): void {
     localStorage.removeItem("databaseUrls");
-    alert("Done")
+    swal({
+      title: 'Success',
+      text: 'The database has been cleared',
+      timer: 800,
+      onOpen: function () {
+        swal.showLoading()
+      }
+    })
   }
 
   public refreshListOfTables(): void {
