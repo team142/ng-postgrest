@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { PostgrestServiceService } from './services/postgrest-service.service';
+import { Properties } from './static/Properties';
 
 @Component({
   selector: 'app-root',
@@ -30,12 +31,11 @@ export class AppComponent implements OnInit {
 
   public tableColumns: string[] = [];
   public tableRows: any[] = [];
+  public tableRowToEdit: any;
 
   constructor(
     private _postgrestService: PostgrestServiceService
-  ) {
-
-  }
+  ) {}
 
   ngOnInit() {
     let result: string = localStorage.getItem("databaseUrls");
@@ -175,23 +175,29 @@ export class AppComponent implements OnInit {
 
 
   public edit(rowPassed: any, i: number): void {
+    this.tableRowToEdit = rowPassed;
 
 
-    var table = <HTMLTableElement> document.getElementById("databaseTable");
-    var row = table.insertRow(0);
-    var cell1 = row.insertCell(0);
-    var cell2 = row.insertCell(1);
-    cell1.innerHTML = "NEW CELL1";
-    cell2.innerHTML = "NEW CELL2";    
+  }
 
-    // let table: HTMLTableElement = <HTMLTableElement> document.getElementById("databaseTable");
+  public getTableRowToEdit(col: string): string {
+    if (!col) {
+      console.log("Not col!")
+      return "";
+    }
+    if (!this.tableRowToEdit) {
+      console.log("Not tableRowToEdit!")
+      return "";
+    }
     
+    var test = this.tableRowToEdit[col];
+    if (!test) {
+      console.log("Not test!")
+      return "";
+    }
     
-    // //Find the correct node
-    // var nodeAfter = table.childNodes.item(i);
-
-    // // table.appendChild(tr);
-    // var row = table.insertRow(i);
+    return test;
+    
 
   }
 

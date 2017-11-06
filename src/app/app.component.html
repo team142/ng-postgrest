@@ -8,6 +8,10 @@
             {{url}}
           </option>
         </select>
+        |
+        <button type="button" class="btn btn-success btn-sm">
+          <span class="glyphicon glyphicon-plus"></span> Add
+        </button>
 
         <ul class="nav navbar-nav ml-auto">
           <li class="nav-item">
@@ -38,22 +42,27 @@
   </div>
 
   <br />
+  <br />
+  <br />
 
   <div class="row" style="margin:5px;">
 
 
     <div class="col-md-4" style="text-align: center;">
-      <button class="btn btn-md btn-default" style="margin:auto;" (click)="prev()">&lt; Back</button>
+      <button class="btn btn-md btn-primary" style="margin:auto;" (click)="prev()">&lt; Back</button>
     </div>
 
     <div class="col-md-4" style="text-align: center;">
+      <span class="badge badge-pill badge-primary">
+        <strong>{{getRange()}}</strong>
+      </span>
 
-      <strong>{{getRange()}}</strong>
+
 
     </div>
 
     <div class="col-md-4" style="text-align: center;">
-      <button class="btn btn-md btn-default" (click)="next()">Forward &gt;</button>
+      <button class="btn btn-md btn-primary" (click)="next()">Forward &gt;</button>
     </div>
 
   </div>
@@ -95,4 +104,22 @@
     </table>
 
   </div>
+
+  <br />
+  <div class="col-md-4" id="editForm">
+    <form>
+      <fieldset>
+        <h2>Edit row</h2>
+        <div *ngFor="let col of tableColumns; let i = index" class="form-group">
+          <label>{{col}}</label>
+          <input type="text" class="form-control" id="field{{i}}" name="field{{i}}" aria-describedby="" [(ngModel)]="tableRowToEdit[col]" placeholder="">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </fieldset>
+    </form>
+
+
+  </div>
+
+
 </div>
