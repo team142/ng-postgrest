@@ -3,27 +3,19 @@
     <div class="container">
       <div class="collapse navbar-collapse" id="navbarResponsive">
 
-        <select  #selectElem (change)="setUrl(selectElem.value)">
+        <select #selectElem (change)="setUrl(selectElem.value)">
           <option *ngFor="let url of databaseUrls">
             {{url}}
           </option>
         </select>
         &nbsp;
-        <button type="button" class="btn btn-success btn-sm">
+        <button (click)="newDatabase()" type="button" class="btn btn-success btn-sm">
           <span class="glyphicon glyphicon-plus"></span> Add
         </button>
         &nbsp;
         <button (click)="clearDB()" class="btn btn-danger btn-sm">
-            <span class="glyphicon glyphicon-plus"></span> Clear
+          <span class="glyphicon glyphicon-trash"></span> Clear
         </button>
-        
-        <ul class="nav navbar-nav ml-auto">
-          <li class="nav-item">
-            <input type="text" class="form-control mb-2 mb-sm-0" name="inlineFormInputName" id="inlineFormInputName" [(ngModel)]="newUrl"
-              placeholder="http://grest..." />
-            <button (click)="newUrlButton()" class="btn btn-default">Add DB</button>
-          </li>
-        </ul>
 
         <ul class="nav navbar-nav ml-auto">
           <li class="nav-item">
@@ -32,6 +24,14 @@
                 {{item}}
               </option>
             </select>
+            <button (click)="refreshTable()" class="btn btn-success btn-sm">
+              <span class="glyphicon glyphicon-refresh"></span> Refresh
+            </button>
+          </li>
+        </ul>
+
+        <ul class="nav navbar-nav ml-auto">
+          <li class="nav-item">
           </li>
 
 
@@ -71,7 +71,7 @@
   </div>
 
 
-  <div *ngIf="busy" class="alert alert-danger animated infinite shake" style="width:80%; margin:0 auto; text-align:center">
+  <div *ngIf="busy" class="alert alert-danger animated infinite shake" style="width:80%; margin:0 auto; text-align:center; margin-top: 100px;">
     <strong>
       {{busyMessage}}
     </strong>

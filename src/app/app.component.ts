@@ -60,6 +60,17 @@ export class AppComponent implements OnInit {
     this.refreshListOfTables();
   }
 
+  public newDatabase(): void {
+    var url = prompt("Please enter your grest url:", "http://grest.something.com");
+    if (url) {
+      if (this.databaseUrls.length == 0) {
+        this.currentUrl = url;
+      }
+      this.databaseUrls.push(url)
+      this.persistUrls();
+      this.refreshListOfTables();
+    }
+  }
   public newUrlButton(): void {
     if (this.databaseUrls.length == 0) {
       this.currentUrl = this.newUrl;
@@ -68,6 +79,7 @@ export class AppComponent implements OnInit {
     this.persistUrls();
     this.refreshListOfTables();
   }
+
 
   public persistUrls(): void {
     localStorage.setItem("databaseUrls", JSON.stringify(this.databaseUrls))
@@ -89,6 +101,10 @@ export class AppComponent implements OnInit {
   public setTables(tables: string[]) {
     this.tables = tables;
     this.setTable(tables[0])
+  }
+
+  public refreshTable(): void {
+    this.setTable(this.table)
   }
 
   public setTable(table: string) {
