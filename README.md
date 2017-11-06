@@ -1,4 +1,4 @@
-# NgPostgrest - Angular Postgrest
+# Angular Postgrest
 
 The goal of this project is to build a simple Angular UI client for Postgrest (Postgrest is a REST wrapper for PostgresSQL. See https://postgrest.com). The central idea of the project is to create a simple web interface for managing and editing PostgresSQL data over Postgrest as an interface.
 
