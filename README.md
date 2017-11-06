@@ -22,14 +22,17 @@ Run `ng build --prod --aot=false` .
   - Update row (**currently testing for non-text fields**)
   - Delete row (with confirmation)
 
+### Next to be implemented
+
+  - Insert new row
+  - Simple queries (AND only)
+
 
 ### Planned
 
-  - Simple queries (AND only)
   - Complex queries (Support for AND, OR)
-  - Insert new row
   - Security headers
-  - Persisting default
+  - Persisting defaults
   - Saving & loading settings (Google drive)
 
 ### Alpha
