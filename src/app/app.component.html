@@ -24,7 +24,8 @@
                 {{item}}
               </option>
             </select>
-            <button (click)="refreshTable()" class="btn btn-success btn-sm">
+            <input type="number" name="sizeOfSelect" id="sizeOfSelect" [(ngModel)]="limit" /> Rows
+            <button  (click)="refreshTable()" class="btn btn-success btn-sm">
               <span class="glyphicon glyphicon-refresh"></span> Refresh
             </button>
           </li>

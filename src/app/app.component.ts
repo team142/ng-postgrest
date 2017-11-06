@@ -113,7 +113,7 @@ export class AppComponent implements OnInit {
     this.offset = 0
     this.table = table;
     let theUrl = this.currentUrl + table;
-    this.loadTableRows(theUrl, 0, 100);
+    this.loadTableRows(theUrl, 0, this.limit);
 
   }
 
@@ -124,11 +124,13 @@ export class AppComponent implements OnInit {
   }
 
   public next(): void {
+    this.setBusy(true, "Loading rows...")
     this.offset = this.offset + this.limit;
     this.loadTableRows(this.currentUrl + this.table, this.offset, this.limit);
   }
 
   public prev(): void {
+    this.setBusy(true, "Loading rows...")
     this.offset = this.offset - this.limit;
 
     if (this.offset < 0) {
@@ -141,16 +143,10 @@ export class AppComponent implements OnInit {
 
     this.tableColumns = [];
 
-
-
-
-
-
     let row: any = blob[0];
     for (var key in row) {
       if (row.hasOwnProperty(key)) {
         this.tableColumns.push(key);
-
       }
     }
 
@@ -172,14 +168,19 @@ export class AppComponent implements OnInit {
       this.tableRows.push(thisRow);
     }
 
+    var component = this;
+    setTimeout(function () {
+      component.setBusy(false, "")
+    }, 800);
 
-    this.busy = false;
-    this.busyMessage = ""
+    // this.busyMessage = ""
+    // this.busy = false;
 
+  }
 
-    // Clear Value
-
-
+  public setBusy(val: boolean, msg: string) {
+    this.busy = val;
+    this.busyMessage = msg;
   }
 
 
