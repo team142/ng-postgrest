@@ -56,7 +56,7 @@
     </div>
 
     <div class="col-md-4" style="text-align: center;">
-      <span class="badge badge-pill badge-primary">
+      <span class="badge badge-pill badge-primary" style="margin-top: 5px;">
         <strong>{{getRange()}}</strong>
       </span>
 
@@ -70,11 +70,26 @@
 
   </div>
 
+  <div class="container" *ngIf="busy">
+    <div class="row">
+      <div class="col-md-4">
+      </div>
 
-  <div *ngIf="busy" class="alert alert-danger animated infinite shake" style="width:80%; margin:0 auto; text-align:center; margin-top: 100px;">
-    <strong>
-      {{busyMessage}}
-    </strong>
+      <div class="col-md-4">
+        <div class="card text-white bg-primary animated infinite tada" style="width:80%; margin:0 auto; text-align:center; margin-top: 100px;">
+          <br />
+          <strong>
+            {{busyMessage}}
+          </strong>
+          <br />
+        </div>
+      </div>
+
+      <div class="col-md-4">
+      </div>
+
+    </div>
+
   </div>
 
 
