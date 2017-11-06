@@ -149,8 +149,8 @@ export class AppComponent implements OnInit {
     if (count == 0) {
       count = 1;
     }
+    this.tableRows = [];
     for (let tableRow of blob) {
-      this.tableRows = [];
       var thisRow: any = {
 
       };
@@ -174,8 +174,25 @@ export class AppComponent implements OnInit {
   }
 
 
-  public edit(obj: any): void {
-    alert("wahoo!")
+  public edit(rowPassed: any, i: number): void {
+
+
+    var table = <HTMLTableElement> document.getElementById("databaseTable");
+    var row = table.insertRow(0);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    cell1.innerHTML = "NEW CELL1";
+    cell2.innerHTML = "NEW CELL2";    
+
+    // let table: HTMLTableElement = <HTMLTableElement> document.getElementById("databaseTable");
+    
+    
+    // //Find the correct node
+    // var nodeAfter = table.childNodes.item(i);
+
+    // // table.appendChild(tr);
+    // var row = table.insertRow(i);
+
   }
 
 
