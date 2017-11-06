@@ -28,6 +28,9 @@ export class AppComponent implements OnInit {
   public busy: boolean = false;
   public busyMessage: string = "";
 
+  public tableColumns: string[] = [];
+  public tableRows: any[] = [];
+
   constructor(
     private _postgrestService: PostgrestServiceService
   ) {
@@ -83,7 +86,6 @@ export class AppComponent implements OnInit {
 
   //Land 'o neat
   public refreshListOfTables(): void {
-    var div = document.getElementById("tableHere").innerHTML = "";
     this.busy = true;
     this.busyMessage = "Loading tables..."
     let theUrl: string = this.currentUrl;
@@ -97,7 +99,6 @@ export class AppComponent implements OnInit {
   }
 
   public setTable(table: string) {
-    var div = document.getElementById("tableHere").innerHTML = "";
     this.busy = true;
     this.busyMessage = "Loading rows..."
     this.offset = 0
@@ -128,21 +129,18 @@ export class AppComponent implements OnInit {
   }
 
   public showRows(blob: any) {
-    var div = document.getElementById("tableHere");
-    div.setAttribute('class','');
-    let divString = "";
-    divString = '<table class="table table-striped table-hover "><tr>'
+
+    this.tableColumns = [];
 
 
-    
-    
+
+
+
 
     let row: any = blob[0];
-    divString = divString + "<th>" + '<span class="glyphicon glyphicon-certificate"></span>' + "</th>"
-    divString = divString + "<th>" + "#" + "</th>"
     for (var key in row) {
       if (row.hasOwnProperty(key)) {
-        divString = divString + "<th>" + key + "</th>"
+        this.tableColumns.push(key);
 
       }
     }
@@ -151,31 +149,26 @@ export class AppComponent implements OnInit {
     if (count == 0) {
       count = 1;
     }
-    divString = divString + "</tr>"
     for (let tableRow of blob) {
-      divString = divString + "<tr>"
-      divString = divString + "<td>" + '<span class="glyphicon glyphicon-edit"></span>' + "</td>"
-      divString = divString + "<td>" + count + "</td>"
+      this.tableRows = [];
+      var thisRow: any = {
+
+      };
       for (var key in row) {
         if (tableRow.hasOwnProperty(key)) {
-          divString = divString + "<td>"
-          divString = divString + tableRow[key]
-          divString = divString + "</td>"
+          Reflect.set(thisRow, key, tableRow[key]);
         }
       }
-      divString = divString + "</tr>"
       count = count + 1;
+      this.tableRows.push(thisRow);
     }
-    divString = divString + "</table>"
 
 
     this.busy = false;
     this.busyMessage = ""
 
-    div.innerHTML = divString
 
     // Clear Value
-    div.setAttribute('class','animated fadeInUp');
 
 
   }

@@ -64,6 +64,29 @@
   </strong>
 </div>
 
-<div id="tableHere" style="margin:15px;">
+
+
+<div id="databaseTable" style="margin:15px;">
+  <table class="table table-striped table-hover ">
+    <tr>
+      <th><span class="glyphicon glyphicon-certificate"></span></th>
+      <th>#</th>
+      <th *ngFor="let col of tableColumns; let i = index">{{col}}</th>          
+    </tr>
+
+
+    <tr *ngFor="let row of tableRows; let i = index">
+      <td><span class="glyphicon glyphicon-edit"></span></td>
+      <td>{{i+1}}</td>
+      <td *ngFor="let col of tableColumns; let i = index">
+        {{row[col]}}
+      </td>
+    </tr>
+
+
+      
+
+
+  </table>
 
 </div>
