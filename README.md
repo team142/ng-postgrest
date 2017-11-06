@@ -8,7 +8,8 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## Build
 
-Run `./build.sh` to build the project.
+Run `./build.sh` to build the project or
+Run `ng build --prod --aot=false` .
 
 ## Features
 
