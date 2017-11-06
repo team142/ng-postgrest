@@ -20,6 +20,7 @@ Run `ng build --prod --aot=false` .
   - Table pagination
   - Table pagination size
   - Update row (**currently testing for non-text fields**)
+  - Delete row (with confirmation)
 
 
 ### Planned
@@ -27,7 +28,6 @@ Run `ng build --prod --aot=false` .
   - Simple queries (AND only)
   - Complex queries (Support for AND, OR)
   - Insert new row
-  - Delete row (with confirmation)
   - Security headers
   - Persisting default
   - Saving & loading settings (Google drive)
