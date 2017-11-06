@@ -1,24 +1,26 @@
 <div>
-  <div class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+  <div class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
     <div class="container">
       <div class="collapse navbar-collapse" id="navbarResponsive">
 
-        <select #selectElem (change)="setUrl(selectElem.value)">
+        <select  #selectElem (change)="setUrl(selectElem.value)">
           <option *ngFor="let url of databaseUrls">
             {{url}}
           </option>
         </select>
-        |
+        &nbsp;
         <button type="button" class="btn btn-success btn-sm">
           <span class="glyphicon glyphicon-plus"></span> Add
         </button>
-
+        <button (click)="clearDB()" class="btn btn-danger">
+            <span class="glyphicon glyphicon-plus"></span> Clear
+        </button>
+        
         <ul class="nav navbar-nav ml-auto">
           <li class="nav-item">
             <input type="text" class="form-control mb-2 mb-sm-0" name="inlineFormInputName" id="inlineFormInputName" [(ngModel)]="newUrl"
               placeholder="http://grest..." />
             <button (click)="newUrlButton()" class="btn btn-default">Add DB</button>
-            <button (click)="clearDB()" class="btn btn-danger">Clear</button>
           </li>
         </ul>
 
@@ -76,7 +78,7 @@
 
 
 
-  <div id="databaseTable" style="margin:15px;">
+  <div id="databaseTable" *ngIf="!editing && !busy" style="margin:15px;">
     <table class="table table-striped table-hover ">
       <tr>
         <th>
@@ -89,7 +91,7 @@
 
       <tr *ngFor="let row of tableRows; let i = index">
         <td>
-          <span (click)="edit(row, i)" class="glyphicon glyphicon-edit"></span>
+          <span (click)="edit(row, i)" class="glyphicon glyphicon-pencil"></span>
         </td>
         <td>{{i+1}}</td>
         <td *ngFor="let col of tableColumns; let i = index">
@@ -106,20 +108,31 @@
   </div>
 
   <br />
-  <div class="col-md-4" id="editForm">
-    <form>
-      <fieldset>
-        <h2>Edit row</h2>
-        <div *ngFor="let col of tableColumns; let i = index" class="form-group">
-          <label>{{col}}</label>
-          <input type="text" class="form-control" id="field{{i}}" name="field{{i}}" aria-describedby="" [(ngModel)]="tableRowToEdit[col]" placeholder="">
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </fieldset>
-    </form>
+  <div class="container">
+    <div class="row">
+      <div *ngIf="editing" class="col-md-3">
+      </div>
+
+      <div *ngIf="editing" class="col-md-6" id="editForm">
+        <form>
+          <fieldset>
+            <h2>Edit row</h2>
+            <div *ngFor="let col of tableColumns; let i = index" class="form-group">
+              <label>{{col}}</label>
+              <input type="text" class="form-control form-control-lg" id="field{{i}}" name="field{{i}}" aria-describedby="" [(ngModel)]="tableRowToEdit[col]"
+                placeholder="">
+            </div>
+            <button type="button" (click)="saveEdit()" class="btn btn-primary">Update</button>
+            <button type="button" (click)="cancelEdit()" class="btn btn-warning">Cancel</button>
+          </fieldset>
+        </form>
 
 
+      </div>
+
+      <div *ngIf="editing" class="col-md-3">
+      </div>
+
+    </div>
   </div>
-
-
 </div>

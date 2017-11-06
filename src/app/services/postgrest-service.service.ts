@@ -14,7 +14,7 @@ export class PostgrestServiceService {
   constructor(private http: Http) { }
 
 
-  public getStuff(url: string): Promise<string[]> {
+  public fetchRows(url: string): Promise<string[]> {
 
     let headers = new Headers({
       'Accepts': 'application/json'
@@ -26,6 +26,19 @@ export class PostgrestServiceService {
       .catch(this.handleError);
 
   }
+
+  public doPatch(url: string, jsonPayload: string): Promise<string[]> {
+
+    let headers = new Headers({
+      'Content-type': 'application/json'
+    });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.patch(url, jsonPayload, options)
+      .toPromise()
+      .catch(this.handleError);
+
+  }
+
 
   private handleError(error: any): Promise<any> {
     return Promise.reject(error.message || error);

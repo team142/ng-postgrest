@@ -32,10 +32,12 @@ export class AppComponent implements OnInit {
   public tableColumns: string[] = [];
   public tableRows: any[] = [];
   public tableRowToEdit: any;
+  public tableRowToEditOriginal: any;
+  public editing: boolean = false;
 
   constructor(
     private _postgrestService: PostgrestServiceService
-  ) {}
+  ) { }
 
   ngOnInit() {
     let result: string = localStorage.getItem("databaseUrls");
@@ -76,20 +78,11 @@ export class AppComponent implements OnInit {
     alert("Done")
   }
 
-  public say(): void {
-    alert(this.currentUrl)
-  }
-
-  public callService(): void {
-    this._postgrestService.getStuff(this.currentUrl);
-  }
-
-  //Land 'o neat
   public refreshListOfTables(): void {
     this.busy = true;
     this.busyMessage = "Loading tables..."
     let theUrl: string = this.currentUrl;
-    this._postgrestService.getStuff(theUrl)
+    this._postgrestService.fetchRows(theUrl)
       .then(results => this.setTables(results));
   }
 
@@ -175,7 +168,9 @@ export class AppComponent implements OnInit {
 
 
   public edit(rowPassed: any, i: number): void {
+    this.editing = true;
     this.tableRowToEdit = rowPassed;
+    this.tableRowToEditOriginal = JSON.stringify(rowPassed);
 
 
   }
@@ -189,15 +184,27 @@ export class AppComponent implements OnInit {
       console.log("Not tableRowToEdit!")
       return "";
     }
-    
+
     var test = this.tableRowToEdit[col];
     if (!test) {
       console.log("Not test!")
       return "";
     }
-    
+
     return test;
-    
+
+
+  }
+
+  public saveEdit(): void {
+    this._postgrestService.doPatch(this.currentUrl + this.table + "?id=eq." + this.tableRowToEdit['id'], this.tableRowToEdit)
+      .catch(error => console.log(error))
+      .then(res => this.cancelEdit())
+
+  }
+
+  public cancelEdit(): void {
+    this.editing = false;
 
   }
 
