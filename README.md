@@ -10,3 +10,20 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 Run `./build.sh` to build the project.
 
+## Features
+
+  - ~~Managing Postgrest endpoints~~
+  - ~~Table selection~~
+  - ~~Table pagination~~
+  - Table pagination size
+  - Simple queries (Equals only, AND only)
+  - Complex queries 
+  - Update row (**currently working on**)
+  - Insert row
+  - Delete row
+  - Security headers
+  - Persisting default
+  - Saving & loading settings (Google drive)
+
+
+
