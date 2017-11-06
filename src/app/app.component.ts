@@ -39,6 +39,8 @@ export class AppComponent implements OnInit {
   public MESSAGE_LOADING_TABLES: string = "Loading TABLES";
   public MESSAGE_LOADING_ROWS: string = "Loading ROWS";
 
+  public inserting: boolean = false;
+
   constructor(
     private _postgrestService: PostgrestServiceService
   ) { }

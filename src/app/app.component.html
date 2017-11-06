@@ -167,4 +167,35 @@
 
     </div>
   </div>
+
+
+  <br />
+  <div class="container">
+    <div class="row">
+      <div *ngIf="inserting" class="col-md-3">
+      </div>
+
+      <div *ngIf="inserting" class="col-md-6" id="insertForm">
+        <form>
+          <fieldset>
+            <h2>Edit row</h2>
+            <div *ngFor="let col of tableColumns; let i = index" class="form-group">
+              <label>{{col}}</label>
+              <input type="text" class="form-control form-control-lg" id="ifield{{i}}" name="field{{i}}" aria-describedby="" [(ngModel)]="tableRowToInsert[col]"
+                placeholder="">
+            </div>
+            <button type="button" (click)="saveInsert()" class="btn btn-primary">Insert</button>
+            <button type="button" (click)="cancelInsert()" class="btn btn-warning">Cancel</button>
+          </fieldset>
+        </form>
+
+
+      </div>
+
+      <div *ngIf="inserting" class="col-md-3">
+      </div>
+
+    </div>
+  </div>
+
 </div>
