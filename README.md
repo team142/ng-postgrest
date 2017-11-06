@@ -1,13 +1,14 @@
 # NgPostgrest - Angular Postgrest
 
-The goal of this project is to build a simple Angular UI client for Postgrest (Postgrest is a REST wrapper for PostgresSQL. [See Postgrest]: https://postgrest.com). The central idea of the project is to create a simple web interface for managing and editing PostgresSQL data over Postgrest as an interface.
+The goal of this project is to build a simple Angular UI client for Postgrest (Postgrest is a REST wrapper for PostgresSQL. See https://postgrest.com). The central idea of the project is to create a simple web interface for managing and editing PostgresSQL data over Postgrest as an interface.
 
 ![Logo](docs/screenshot.PNG "Logo")
 
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+To setup the project run `npm i` from within the root directory.
+Run `ng serve --open` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Build
 
