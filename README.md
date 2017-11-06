@@ -38,6 +38,9 @@ Run `ng build --prod --aot=false` .
   - Security headers
   - Persisting defaults
   - Saving & loading settings (Google drive)
+  - Host latest release on Github pages
+  - Docker image (Alpine, Nginx)
+  - Heroku button
 
 ### Stack
 
