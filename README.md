@@ -32,5 +32,11 @@ Run `ng build --prod --aot=false` .
   - Persisting default
   - Saving & loading settings (Google drive)
 
+### Alpha
+
+![Logo](docs/screenshot.PNG "Logo")
+
+
+
 
 
