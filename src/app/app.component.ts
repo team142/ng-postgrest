@@ -118,9 +118,7 @@ export class AppComponent implements OnInit {
   }
 
   public loadTableRows(url: string, startNum: number, rows: number) {
-    if (rows == 0) {
-      url = url + "?offset=" + startNum
-    } else {
+    if (rows != 0) {
       url = url + "?limit=" + rows + "&offset=" + startNum
     }
     this._postgrestService.getRows(url)

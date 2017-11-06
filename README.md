@@ -16,7 +16,7 @@ Run `ng build --prod --aot=false` .
   - ~~Managing Postgrest endpoints~~
   - ~~Table selection~~
   - ~~Table pagination~~
-  - Table pagination size
+  - ~~Table pagination size~~
   - Simple queries (Equals only, AND only)
   - Complex queries 
   - ~~Update row~~ (**currently testing for non-text fields**)
