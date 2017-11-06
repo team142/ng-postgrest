@@ -36,6 +36,9 @@ export class AppComponent implements OnInit {
   public tableRowToEditOriginal: any;
   public editing: boolean = false;
 
+  public MESSAGE_LOADING_TABLES: string = "Loading TABLES";
+  public MESSAGE_LOADING_ROWS: string = "Loading ROWS";
+
   constructor(
     private _postgrestService: PostgrestServiceService
   ) { }
@@ -134,7 +137,7 @@ export class AppComponent implements OnInit {
 
   public refreshListOfTables(): void {
     this.busy = true;
-    this.busyMessage = "Loading tables..."
+    this.busyMessage = this.MESSAGE_LOADING_TABLES
     let theUrl: string = this.currentUrl;
     this._postgrestService.fetchRows(theUrl)
       .then(results => this.setTables(results));
@@ -151,7 +154,7 @@ export class AppComponent implements OnInit {
 
   public setTable(table: string) {
     this.busy = true;
-    this.busyMessage = "Loading rows..."
+    this.busyMessage = this.MESSAGE_LOADING_ROWS
     this.offset = 0
     this.table = table;
     let theUrl = this.currentUrl + table;
@@ -168,13 +171,13 @@ export class AppComponent implements OnInit {
   }
 
   public next(): void {
-    this.setBusy(true, "Loading rows...")
+    this.setBusy(true, this.MESSAGE_LOADING_ROWS)
     this.offset = this.offset + this.limit;
     this.loadTableRows(this.currentUrl + this.table, this.offset, this.limit);
   }
 
   public prev(): void {
-    this.setBusy(true, "Loading rows...")
+    this.setBusy(true, this.MESSAGE_LOADING_ROWS)
     this.offset = this.offset - this.limit;
 
     if (this.offset < 0) {
