@@ -17,11 +17,11 @@ Run `ng build --prod --aot=false` .
   - ~~Table selection~~
   - ~~Table pagination~~
   - ~~Table pagination size~~
-  - Simple queries (Equals only, AND only)
-  - Complex queries 
+  - Simple queries (AND only)
+  - Complex queries (Support for AND, OR)
   - ~~Update row~~ (**currently testing for non-text fields**)
-  - Insert row
-  - Delete row
+  - Insert new row
+  - Delete row (with confirmation)
   - Security headers
   - Persisting default
   - Saving & loading settings (Google drive)
