@@ -138,6 +138,7 @@ export class AppComponent implements OnInit {
     
 
     let row: any = blob[0];
+    divString = divString + "<th>" + '<span class="glyphicon glyphicon-certificate"></span>' + "</th>"
     divString = divString + "<th>" + "#" + "</th>"
     for (var key in row) {
       if (row.hasOwnProperty(key)) {
@@ -153,7 +154,8 @@ export class AppComponent implements OnInit {
     divString = divString + "</tr>"
     for (let tableRow of blob) {
       divString = divString + "<tr>"
-      divString = divString + "<td>" + count + '<span class="glyphicon glyphicon-edit"></span>' + "</td>"
+      divString = divString + "<td>" + '<span class="glyphicon glyphicon-edit"></span>' + "</td>"
+      divString = divString + "<td>" + count + "</td>"
       for (var key in row) {
         if (tableRow.hasOwnProperty(key)) {
           divString = divString + "<td>"
@@ -178,6 +180,10 @@ export class AppComponent implements OnInit {
 
   }
 
+
+  public edit(obj: any): void {
+    alert("wahoo!")
+  }
 
 
 
