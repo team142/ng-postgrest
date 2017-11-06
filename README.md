@@ -13,13 +13,19 @@ Run `ng build --prod --aot=false` .
 
 ## Features
 
-  - ~~Managing Postgrest endpoints~~
-  - ~~Table selection~~
-  - ~~Table pagination~~
-  - ~~Table pagination size~~
+### Completed
+
+  - Managing Postgrest endpoints
+  - Table selection
+  - Table pagination
+  - Table pagination size
+  - Update row (**currently testing for non-text fields**)
+
+
+### Planned
+
   - Simple queries (AND only)
   - Complex queries (Support for AND, OR)
-  - ~~Update row~~ (**currently testing for non-text fields**)
   - Insert new row
   - Delete row (with confirmation)
   - Security headers
