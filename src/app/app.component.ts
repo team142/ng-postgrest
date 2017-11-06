@@ -79,7 +79,7 @@ export class AppComponent implements OnInit {
             } else {
               resolve()
             }
-          }, 2000)
+          }, 800)
         })
       },
       allowOutsideClick: false
@@ -120,6 +120,8 @@ export class AppComponent implements OnInit {
   public clearDB(): void {
     localStorage.removeItem("databaseUrls");
     this.databaseUrls = [];
+    this.tableRows = [];
+    this.tableColumns = [];
     swal({
       title: 'Success',
       text: 'The database has been cleared',
