@@ -19,7 +19,7 @@ Run `ng build --prod --aot=false` .
   - Table pagination size
   - Simple queries (Equals only, AND only)
   - Complex queries 
-  - Update row (**currently working on**)
+  - ~~Update row~~ (**currently testing for non-text fields**)
   - Insert row
   - Delete row
   - Security headers
