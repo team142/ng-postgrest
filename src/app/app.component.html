@@ -103,28 +103,26 @@
   <div id="databaseTable" *ngIf="!editing && !busy" style="margin:15px;">
     <table class="table table-striped table-hover ">
       <tr>
-        <th>
-          <span class="glyphicon glyphicon-certificate"></span>
-        </th>
         <th>#</th>
         <th *ngFor="let col of tableColumns; let i = index">{{col}}</th>
-        <th>
-
+        <th style="width:100px;">
+          <span class="glyphicon glyphicon-certificate"></span> Options
         </th>
       </tr>
 
 
       <tr *ngFor="let row of tableRows; let i = index">
-        <td>
-          <span (click)="edit(row, i)" class="glyphicon glyphicon-pencil" style="color:blue"></span>
-        </td>
         <td>{{i+1}}</td>
         <td *ngFor="let col of tableColumns; let i = index">
           {{row[col]}}
         </td>
         <td>
-          <button (click)="deleteRowButton(row)" class="button btn-sm btn-default">
-            <span class="glyphicon glyphicon-trash" style="color:red"></span>&nbsp;
+          <button (click)="edit(row, i)" class="btn btn-outline-secondary">
+            <span class="glyphicon glyphicon-pencil" style="color:blue"></span> Edit
+          </button>
+          &nbsp;
+          <button (click)="deleteRowButton(row)" class="btn btn-outline-secondary">
+            <span class="glyphicon glyphicon-trash" style="color:red"></span> Delete
           </button>
 
         </td>
