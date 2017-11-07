@@ -15,7 +15,10 @@ The app will automatically reload if you change any of the source files.
 
 ## Build
 
-Run `./build.sh` to build the project or
+Run `./build.sh` to build the project 
+
+or
+
 Run `ng build --prod --aot=false` .
 
 ## Features
