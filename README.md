@@ -5,10 +5,13 @@ The goal of this project is to build a simple Angular UI client (CRUD) for Postg
 ![Logo](docs/screenshot.PNG "Logo")
 
 
-## Development server
+## Development
 
-To setup the project run `npm i` from within the root directory.
-Run `ng serve --open` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+To install the node dependencies the project run `npm i` from within the root directory.
+
+Run `ng serve --open` for a dev server. Navigate to `http://localhost:4200/`. 
+
+The app will automatically reload if you change any of the source files.
 
 ## Build
 
