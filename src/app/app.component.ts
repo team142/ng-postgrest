@@ -20,9 +20,9 @@ export class AppComponent implements OnInit {
 
   public newUrl: string = "";
 
-  public tables: string[] = [];
+  public tables: { name: string; pkey: string }[] = [];
 
-  public table: string = "";
+  public table: { name: string; pkey: string } = {name: "", pkey: ""};
   public limit: number = 100;
   public offset: number = 0;
 
@@ -145,7 +145,7 @@ export class AppComponent implements OnInit {
       .then(results => this.setTables(results));
   }
 
-  public setTables(tables: string[]) {
+  public setTables(tables: { name: string; pkey: string }[]) {
     this.tables = tables;
     this.setTable(tables[0])
   }
@@ -154,12 +154,12 @@ export class AppComponent implements OnInit {
     this.setTable(this.table)
   }
 
-  public setTable(table: string) {
+  public setTable(table: { name: string; pkey: string }) {
     this.busy = true;
     this.busyMessage = this.MESSAGE_LOADING_ROWS
     this.offset = 0
     this.table = table;
-    let theUrl = this.currentUrl + table;
+    let theUrl = this.currentUrl + table.name;
     this.loadTableRows(theUrl, 0, this.limit);
 
   }
