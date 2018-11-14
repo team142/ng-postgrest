@@ -144,7 +144,7 @@ export class AppComponent implements OnInit {
     this.busy = true;
     this.busyMessage = this.MESSAGE_LOADING_TABLES
     let theUrl: {url: string, auth: string} = this.currentUrl;
-    this._postgrestService.fetchRows(theUrl.url)
+    this._postgrestService.fetchRows(theUrl, theUrl.url)
       .then(results => this.setTables(results));
   }
 
@@ -171,7 +171,7 @@ export class AppComponent implements OnInit {
     if (rows != 0) {
       url = url + "?limit=" + rows + "&offset=" + startNum
     }
-    this._postgrestService.getRows(url)
+    this._postgrestService.getRows(this.currentUrl, url)
       .then(res => this.showRows(res))
   }
 
@@ -266,7 +266,7 @@ export class AppComponent implements OnInit {
   }
 
   public saveEdit(): void {
-    this._postgrestService.doPatch(this.currentUrl.url + this.table.name + "?"+ this.table.pkey +"=eq." + this.tableRowToEdit[this.table.pkey], this.tableRowToEdit)
+    this._postgrestService.doPatch(this.currentUrl, this.currentUrl.url + this.table.name + "?"+ this.table.pkey +"=eq." + this.tableRowToEdit[this.table.pkey], this.tableRowToEdit)
       .catch(error => console.log(error))
       .then(res => this.cancelEdit())
 
@@ -299,7 +299,7 @@ export class AppComponent implements OnInit {
 
   public deleteRow(row: any) {
     var t = this;
-    this._postgrestService.doDelete(this.currentUrl.url + this.table.name + "?"+ this.table.pkey +"=eq." + row[this.table.pkey])
+    this._postgrestService.doDelete(this.currentUrl, this.currentUrl.url + this.table.name + "?"+ this.table.pkey +"=eq." + row[this.table.pkey])
       .catch(error => console.log(error))
       .then(v => t.refreshTable()
       )

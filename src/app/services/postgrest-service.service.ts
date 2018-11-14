@@ -9,9 +9,10 @@ import { environment } from "../../environments/environment";
 export class PostgrestServiceService {
   constructor(private http: Http) {}
 
-  public fetchRows(url: string): Promise<{ name: string; pkey: string }[]> {
+  public fetchRows(db: {url: string, auth: string}, url: string): Promise<{ name: string; pkey: string }[]> {
     let headers = new Headers({
-      Accepts: "application/json"
+      Accepts: "application/json",
+      Authorization: "Bearer " + db.auth
     });
     let options = new RequestOptions({ headers: headers });
     return this.http
@@ -21,9 +22,10 @@ export class PostgrestServiceService {
       .catch(this.handleError);
   }
 
-  public doPatch(url: string, jsonPayload: string): Promise<string[]> {
+  public doPatch(db: {url: string, auth: string}, url: string, jsonPayload: string): Promise<string[]> {
     let headers = new Headers({
-      "Content-type": "application/json"
+      "Content-type": "application/json",
+      Authorization: "Bearer " + db.auth
     });
     let options = new RequestOptions({ headers: headers });
     return this.http
@@ -32,9 +34,10 @@ export class PostgrestServiceService {
       .catch(this.handleError);
   }
 
-  public doDelete(url: string): Promise<string[]> {
+  public doDelete(db: {url: string, auth: string},url: string): Promise<string[]> {
     let headers = new Headers({
-      "Content-type": "application/json"
+      "Content-type": "application/json",
+      Authorization: "Bearer " + db.auth
     });
     let options = new RequestOptions({ headers: headers });
     return this.http
@@ -72,9 +75,10 @@ export class PostgrestServiceService {
     return Promise.resolve(results);
   }
 
-  public getRows(url: string): Promise<any> {
+  public getRows(db: {url: string, auth: string}, url: string): Promise<any> {
     let headers = new Headers({
-      Accepts: "application/json"
+      Accepts: "application/json",
+      Authorization: "Bearer " + db.auth
     });
     let options = new RequestOptions({ headers: headers });
     return this.http
