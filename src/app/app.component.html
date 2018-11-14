@@ -5,7 +5,7 @@
 
         <select #selectElem (change)="setUrl(selectElem.value)">
           <option *ngFor="let url of databaseUrls">
-            {{url}}
+            {{url.url}}
           </option>
         </select>
         &nbsp;
