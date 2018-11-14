@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { PostgrestServiceService } from './services/postgrest-service.service';
 import { Properties } from './static/Properties';
+import * as $ from 'jquery';
 
 declare var swal: any;
 
@@ -71,26 +72,27 @@ export class AppComponent implements OnInit {
     var t = this;
 
     swal({
-      title: 'Please enter a grest url',
-      input: 'text',
+      title: 'Please enter a grest url, and JWT token',
+      html: '<input id="url-input" placeholder=" postgrest url" class="swal2-input">' + '<input id="auth-input" placeholder="JWT token" class="swal2-input">',
       showCancelButton: true,
       confirmButtonText: 'Save',
       showLoaderOnConfirm: true,
-      preConfirm: function (url: string) {
+      preConfirm: function () {
         return new Promise(function (resolve, reject) {
-          setTimeout(function () {
-            if (!url) {
-              reject('Nope.')
+            if(!$('#url-input').val()){
+              reject("Nop!")
             } else {
-              resolve()
-            }
-          }, 800)
+              resolve({
+                url: $('#url-input').val(),
+                auth: $('#auth-input').val()
+                })
+              }
         })
       },
       allowOutsideClick: false
-    }).then(function (url) {
-      url = url.replace(/\/$/, ""); // remove trailing slash
-      t.addUrl({url: url, auth: null})
+    }).then(function (db) {
+      db.url = db.url.replace(/\/$/, ""); // remove trailing slash
+      t.addUrl({url: db.url, auth: db.auth})
     })
 
 
