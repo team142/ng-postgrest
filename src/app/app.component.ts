@@ -175,7 +175,7 @@ export class AppComponent implements OnInit {
   public next(): void {
     this.setBusy(true, this.MESSAGE_LOADING_ROWS)
     this.offset = this.offset + this.limit;
-    this.loadTableRows(this.currentUrl + this.table, this.offset, this.limit);
+    this.loadTableRows(this.currentUrl + this.table.name, this.offset, this.limit);
   }
 
   public prev(): void {
@@ -185,7 +185,7 @@ export class AppComponent implements OnInit {
     if (this.offset < 0) {
       this.offset = 0;
     }
-    this.loadTableRows(this.currentUrl + this.table, this.offset, this.limit);
+    this.loadTableRows(this.currentUrl + this.table.name, this.offset, this.limit);
   }
 
   public showRows(blob: any) {
@@ -263,7 +263,7 @@ export class AppComponent implements OnInit {
   }
 
   public saveEdit(): void {
-    this._postgrestService.doPatch(this.currentUrl + this.table + "?id=eq." + this.tableRowToEdit['id'], this.tableRowToEdit)
+    this._postgrestService.doPatch(this.currentUrl + this.table.name + "?"+ this.table.pkey +"=eq." + this.tableRowToEdit[this.table.pkey], this.tableRowToEdit)
       .catch(error => console.log(error))
       .then(res => this.cancelEdit())
 
@@ -296,7 +296,7 @@ export class AppComponent implements OnInit {
 
   public deleteRow(row: any) {
     var t = this;
-    this._postgrestService.doDelete(this.currentUrl + this.table + "?id=eq." + row['id'])
+    this._postgrestService.doDelete(this.currentUrl + this.table.name + "?"+ this.table.pkey +"=eq." + row[this.table.pkey])
       .catch(error => console.log(error))
       .then(v => t.refreshTable()
       )
